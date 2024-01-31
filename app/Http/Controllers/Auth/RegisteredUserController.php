@@ -32,12 +32,18 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'image' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // Example rules for image file
+            'status' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        $imagePath = $request->file('image')->store('pengguna', 'public');
+
 
         $user = User::create([
             'name' => $request->name,
+            'image' => $imagePath,
+            'status' => $request->status,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        .kanan {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 align="center">RAPORT SEMESTER</h1>
+        <div class="kanan">
+            <p>Semester : <span id="semester"></span></p>
+            <p>Tahun ajaran : <span id="ta"></span></p>
+        </div>
+        <p>Nama Siswa : <span id="nama"></span></p>
+        <p>Kelas : <span id="kelas"></span></p>
+        <p>Program studi : <span id="ps"></span></p>
+
+        <table class="table table-bordered" style="width:100%">
+            <tr>
+                <th style="width: 0%;">No</th>
+                <th>Nama Mapel</th>
+                <th style="width: 0%;">Nilai</th>
+                <th>Deskripsi</th>
+            </tr>
+            <tr>
+                <td rowspan="2">1</td>
+                <td rowspan="2">Pendidikan Agama dan Budi Pekerti</td>
+                <td>92</td>
+                <td><span id="a"></span><span id="indexA"></span> </td>
+            </tr>
+            <tr>
+                <td>80</td>
+                <td><span id="b"></span><span id="indexB"></span> </td>
+            </tr>
+            <tr>
+                <td rowspan="2">2</td>
+                <td rowspan="2">Pendidikan Pancasila</td>
+                <td>85</td>
+                <td><span id="c"></span><span id="indexC"></span> </td>
+            </tr>
+            <tr>
+                <td>84</td>
+                <td><span id="d"></span><span id="indexD"></span> </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+    <script>
+
+
+        var nilaiA = 70;
+        var nilaiB = 80;
+        var nilaiC = 85;
+        var nilaiD = 84;
+
+        harley('indexA', nilaiA);
+        harley('indexB', nilaiB);
+        harley('indexC', nilaiC);
+        harley('indexD', nilaiD);
+
+
+        function harley(id, nilai) {
+            if (nilai >= 85) {
+                document.getElementById(id).innerHTML = "Sangat Baik pada memahami";
+            } else if (nilai >= 80) {
+                document.getElementById(id).innerHTML = "Cukup Baik";
+            } else if (nilai >= 76) {
+                document.getElementById(id).innerHTML = "Perlu ditingkatkan";
+            } else {
+                document.getElementById(id).innerHTML = "kata kata mutiara";
+            }
+        }
+
+        var nama = "Haifazahra Irawan";
+        document.getElementById('nama').innerHTML = nama;
+        var kelas = '10';
+        document.getElementById('kelas').innerHTML = kelas;
+        var ps = "Pengembangan Perangkat Lunak";
+        document.getElementById('ps').innerHTML = ps;
+        var semester = '1';
+        document.getElementById('semester').innerHTML = semester;
+        var ta = '2023-2024';
+        document.getElementById('ta').innerHTML = ta;
+
+    </script>
+</body>
+
+</html>

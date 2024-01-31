@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +18,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('blog');
 });
 
 // Route::get('/dashboard', function () {
@@ -23,8 +26,13 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::resource('/category',  \App\Http\Controllers\CategoryController::class);
+    Route::resource('/blog',  \App\Http\Controllers\BlogController::class);
+    Route::resource('/users',  \App\Http\Controllers\UserController::class);
 
-route::get('post', [HomeController::class, 'post'])->middleware(['auth', 'admin']);
+});
+Route::get('/', [BlogController::class, 'beritautama']);
 
 
 Route::middleware('auth')->group(function () {
