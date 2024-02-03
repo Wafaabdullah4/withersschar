@@ -18,6 +18,7 @@
                             <th>No</th>
                             <th>Judul Blog</th>
                             <th>Kategori</th>
+                            <th>Profile</th>
                             <th>Penulis</th>
                             <th>Isi Blog</th>
                             <th>Gambar</th>
@@ -37,6 +38,14 @@
                                     <span class="fw-medium">{{ $blog->title }}</span>
                                 </td>
                                 <td>{{ $blog->category ? $blog->category->name : 'Tanpa Kategori' }}</td>
+                                <td>
+                                    @if ($blog->user->image)
+                                        <img src="{{ asset('storage/' . $blog->user->image) }}" alt="User Image" class="img-thumbnail w-px-40 h-auto rounded-circle">
+                                    @else
+                                        Tidak ada gambar
+                                    @endif
+                                </td>
+
                                 <td>{{ $blog->user->name }}</td>
                                 <td>{{ Str::words($blog->content, 5) }}</td>
 

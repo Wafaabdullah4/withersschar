@@ -1,5 +1,4 @@
 <?php
-// app/Http/Controllers/BlogController.php
 
 namespace App\Http\Controllers;
 
@@ -11,7 +10,7 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-       /**
+    /**
      * Menampilkan daftar semua blog.
      *
      * @return \Illuminate\View\View
@@ -19,23 +18,19 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::latest()->paginate(20);
+        $user= User::all();
 
-        return view('admin.postingan.index', compact('blogs'));
+        return view('admin.postingan.index', compact('blogs','user'));
     }
 
     public function beritautama()
     {
-        // $blogs = Blog::with(['user', ''])->get();
-        $user = User::all();
         $categories = Category::all();
+        $user = User::all();
         $blogs = Blog::latest()->paginate(20);
 
-        return view('blog', compact('blogs', 'user', 'categories'));
+        return view('blog', compact('blogs', 'categories', 'user'));
     }
-    //     $blogs = Blog::latest()->paginate(20);
-
-    //     return view('blog', compact('blogs'));
-    // }
 
     /**
      * Menampilkan formulir untuk membuat blog baru.
@@ -57,19 +52,9 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required',
-            'content' => 'required',
-            'category_id' => 'nullable|exists:categories,id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // tambahkan validasi untuk gambar
-            'published_at' => 'nullable|date', // tambahkan validasi untuk tanggal publikasi
-        ]);
+        $this->validateBlogRequest($request);
 
-        // Proses upload gambar jika ada
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('blog_images', 'public');
-        }
+        $imagePath = $this->uploadImage($request);
 
         $blog = Blog::create([
             'user_id' => auth()->id(),
@@ -82,18 +67,6 @@ class BlogController extends Controller
         ]);
 
         return redirect()->route('blog.index')->with('success', 'Blog berhasil disimpan!');
-    }
-    /**
-     * Menampilkan detail blog.
-     *
-     * @param  int  $id
-     * @return \Illuminate\View\View
-     */
-    public function show($id)
-    {
-        $blog = Blog::findOrFail($id);
-
-        return view('blogs.show', compact('blog'));
     }
 
     /**
@@ -119,19 +92,18 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'title' => 'required',
-            'content' => 'required',
-            'category_id' => 'nullable|exists:categories,id',
-        ]);
+        $this->validateBlogRequest($request);
 
         $blog = Blog::findOrFail($id);
+
+        $imagePath = $this->uploadImage($request);
 
         $blog->update([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'content' => $request->content,
             'category_id' => $request->category_id,
+            'image' => $imagePath ?: $blog->image, // Update image only if a new image is uploaded
             'published_at' => $request->published_at,
         ]);
 
@@ -150,5 +122,37 @@ class BlogController extends Controller
         $blog->delete();
 
         return redirect()->route('blog.index')->with('success', 'Blog berhasil dihapus!');
+    }
+
+    /**
+     * Validate the blog request.
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return void
+     */
+    private function validateBlogRequest(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required',
+            'category_id' => 'nullable|exists:categories,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'published_at' => 'nullable|date',
+        ]);
+    }
+
+    /**
+     * Upload the image.
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return string|null
+     */
+    private function uploadImage(Request $request)
+    {
+        if ($request->hasFile('image')) {
+            return $request->file('image')->store('blog_images', 'public');
+        }
+
+        return null;
     }
 }
