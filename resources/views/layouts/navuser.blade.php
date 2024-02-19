@@ -7,8 +7,8 @@
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <title>Withersschar</title>
 
     <meta name="description" content="" />
@@ -56,22 +56,14 @@
 
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
-                    <a href="{{url('home')}}" class="app-brand-link">
+                    <a href="{{ url('home') }}" class="app-brand-link">
                         <span class="app-brand-logo demo">
 
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bold ms-2 ">Withersschar</span>
+                        <span class="app-brand-text demo menu-text fw-bold ms-2 ">Quantum Read</span>
                     </a>
                     <!-- Add this button wherever you want the logout button to appear -->
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
 
-                        <x-dropdown-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                        </x-dropdown-link>
-                    </form>
 
 
 
@@ -84,14 +76,6 @@
                 <div class="menu-inner-shadow"></div>
 
                 <ul class="menu-inner py-1">
-                    <!-- Dashboards -->
-                    <li class="menu-item active open">
-                        <a href="{{url('home')}}" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                            <div data-i18n="Dashboards">Dashboards</div>
-                            <div class="badge bg-danger rounded-pill ms-auto">5</div>
-                        </a>
-                    </li>
 
 
 
@@ -116,27 +100,32 @@
                     </li>
 
                     <li class="menu-item">
-                        <a href="{{route('categoryuser.index')}}"
-                            class="menu-link">
+                        <a href="{{ route('categoryuser.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-chat"></i>
                             <div data-i18n="Chat">Category</div>
                             <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto"></div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{route('bloguser.index')}}"
-                            class="menu-link">
+                        <a href="{{ route('bloguser.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-calendar"></i>
                             <div data-i18n="Calendar">Postingan</div>
                             <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto"></div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-calendar.html"
-                            target="_blank" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-calendar"></i>
-                            <div data-i18n="Calendar">Calendar</div>
-                            <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto"></div>
+                        <div data-i18n="Calendar" class="mx-5">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        </div>
+                        <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto"></div>
                         </a>
                     </li>
 
@@ -240,7 +229,7 @@
                                             <i class="bx bx-power-off me-2"></i>
                                             <span class="align-middle">Log Out
 
-                     </span>
+                                            </span>
                                         </a>
                                     </li>
                                 </ul>
@@ -253,48 +242,47 @@
                 <!-- / Navbar -->
 
                 <div class="content-wrapper">
-                                @yield('content')
-                            </div>
-                    <!-- / Content -->
-
-                    <!-- Footer -->
-                    <footer class="content-footer footer bg-footer-theme">
-                        <div
-                            class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                            <div class="mb-2 mb-md-0">
-                                ©
-                                <script>
-                                    document.write(new Date().getFullYear());
-                                </script>
-                                , made with ❤️ by
-                                <a href="https://themeselection.com" target="_blank"
-                                    class="footer-link fw-medium">ThemeSelection</a>
-                            </div>
-                            <div class="d-none d-lg-inline-block">
-                                <a href="https://themeselection.com/license/" class="footer-link me-4"
-                                    target="_blank">License</a>
-                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
-                                    Themes</a>
-
-                                <a href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/"
-                                    target="_blank" class="footer-link me-4">Documentation</a>
-
-                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                                    target="_blank" class="footer-link">Support</a>
-                            </div>
-                        </div>
-                    </footer>
-                    <!-- / Footer -->
-
-                    <div class="content-backdrop fade"></div>
+                    @yield('content')
                 </div>
-                <!-- Content wrapper -->
-            </div>
-            <!-- / Layout page -->
-        </div>
+                <!-- / Content -->
 
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
+                <!-- Footer -->
+                <footer class="content-footer footer bg-footer-theme">
+                    <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                        <div class="mb-2 mb-md-0">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            , made with ❤️ by
+                            <a href="https://themeselection.com" target="_blank"
+                                class="footer-link fw-medium">ThemeSelection</a>
+                        </div>
+                        <div class="d-none d-lg-inline-block">
+                            <a href="https://themeselection.com/license/" class="footer-link me-4"
+                                target="_blank">License</a>
+                            <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
+                                Themes</a>
+
+                            <a href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/"
+                                target="_blank" class="footer-link me-4">Documentation</a>
+
+                            <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                                target="_blank" class="footer-link">Support</a>
+                        </div>
+                    </div>
+                </footer>
+                <!-- / Footer -->
+
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+    </div>
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
 
@@ -325,14 +313,12 @@
 
     <script>
         //message with toastr
-        @if(session()->has('success'))
+        @if (session()->has('success'))
 
             toastr.success('{{ session('success') }}', 'BERHASIL!');
-
-        @elseif(session()->has('error'))
+        @elseif (session()->has('error'))
 
             toastr.error('{{ session('error') }}', 'GAGAL!');
-
         @endif
     </script>
 

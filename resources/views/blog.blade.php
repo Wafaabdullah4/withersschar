@@ -42,7 +42,8 @@
         <div class="container">
 
             <a href="#" class="logo">
-                <img src="./assets/images/logo.svg" width="129" height="40" alt="Blogy logo">
+                <img src="public\blogy-master\assets\images\quantumread.png" alt="">
+                <img src="{{ asset('quantumread.png') }}" alt="">
             </a>
 
             <nav class="navbar" data-navbar>
@@ -124,7 +125,8 @@
                 <div class="container">
 
                     <h1 class="h1 hero-title">
-                        <strong class="strong">Hey, we’re Blogy.</strong> See our thoughts, stories and ideas.
+                        <strong class="strong">Hey, Ini Quantum Read.</br></strong> Tempat dimana anda dapat mencari
+                        berbagai karya tulisan.
                     </h1>
 
                     <div class="wrapper">
@@ -157,7 +159,7 @@
                 <div class="container">
 
                     <p class="section-subtitle">
-                        Get started with our <strong class="strong">best stories</strong>
+                        Mulai dengan kami <strong class="strong">anda akan mendapatkan pengalaman yang menarik</strong>
                     </p>
 
                     <ul class="has-scrollbar">
@@ -534,8 +536,9 @@
                     <div class="title-wrapper">
 
                         <h2 class="h2 section-title">
-                            See what we’ve <strong class="strong">written lately</strong>
+                            Lebih banyak pengalaman lainnya <strong class="strong">ditulis akhir-akhir ini</strong>
                         </h2>
+
 
                         <div class="top-author">
                             <ul class="avatar-list">
@@ -550,7 +553,7 @@
                                 @endforeach
                             </ul>
 
-                            <span class="span">Meet our top authors</span>
+                            <span class="span">Temui penulis top kami</span>
                         </div>
 
                     </div>
@@ -567,14 +570,17 @@
                                         <ul class="avatar-list absolute">
 
                                             @if ($blog->user->image)
-                                            <li class="avatar-item">
-                                                <a href="#" class="avatar img-holder" style="--width: 100; --height: 100;">
-                                                    <img src="{{ asset('storage/' . $blog->user->image) }}" alt="User Image" width="100" height="100" loading="lazy" class="img-cover">
-                                                </a>
-                                            </li>
-                                        @else
-                                            Tidak ada gambar
-                                        @endif
+                                                <li class="avatar-item">
+                                                    <a href="#" class="avatar img-holder"
+                                                        style="--width: 100; --height: 100;">
+                                                        <img src="{{ asset('storage/' . $blog->user->image) }}"
+                                                            alt="User Image" width="100" height="100"
+                                                            loading="lazy" class="img-cover">
+                                                    </a>
+                                                </li>
+                                            @else
+                                                Tidak ada gambar
+                                            @endif
 
 
                                         </ul>
@@ -897,12 +903,13 @@
                 <div class="footer-brand">
 
                     <a href="#" class="logo">
-                        <img src="./assets/images/logo.svg" width="129" height="40" alt="Blogy logo">
+                        <img src="public\blogy-master\assets\images\quantumread.png" alt="">
+                        <img src="{{ asset('quantumread.png') }}" alt="">
+                    </a>
                     </a>
 
                     <p class="footer-text">
-                        A minimal, functional theme for running a paid-membership publication on Ghost.
-                    </p>
+                        Subscribe untuk <strong class="strong">postingan baru</strong> </p>
 
                 </div>
 
