@@ -42,7 +42,8 @@
         <div class="container">
 
             <a href="#" class="logo">
-                <img src="./assets/images/logo.svg" width="129" height="40" alt="Blogy logo">
+                <img src="public\blogy-master\assets\images\quantumread.png"  alt="">
+                <img src="{{ asset('quantumread.png') }}"  alt="">
             </a>
 
             <nav class="navbar" data-navbar>
@@ -77,7 +78,7 @@
                     <span class="span three"></span>
                 </button>
 
-                <a href="#" class="btn">Join</a>
+                <a href="{{ route('login') }}" class="btn">Join</a>
 
             </div>
 
@@ -124,7 +125,7 @@
                 <div class="container">
 
                     <h1 class="h1 hero-title">
-                        <strong class="strong">Hey, we’re Blogy.</strong> See our thoughts, stories and ideas.
+                        <strong class="strong">Hey, Ini Quantum Read.</br></strong> Tempat dimana anda dapat mencari berbagai karya tulisan.
                     </h1>
 
                     <div class="wrapper">
@@ -157,7 +158,7 @@
                 <div class="container">
 
                     <p class="section-subtitle">
-                        Get started with our <strong class="strong">best stories</strong>
+                        Mulai dengan kami <strong class="strong">anda akan mendapatkan pengalaman yang menarik</strong>
                     </p>
 
                     <ul class="has-scrollbar">
@@ -534,7 +535,7 @@
                     <div class="title-wrapper">
 
                         <h2 class="h2 section-title">
-                            See what we’ve <strong class="strong">written lately</strong>
+                            Lebih banyak pengalaman lainnya <strong class="strong">ditulis akhir-akhir ini</strong>
                         </h2>
 
                         <div class="top-author">
@@ -550,7 +551,7 @@
                                 @endforeach
                             </ul>
 
-                            <span class="span">Meet our top authors</span>
+                            <span class="span">Temui penulis top kami</span>
                         </div>
 
                     </div>
@@ -866,7 +867,7 @@
             <section class="section newsletter">
 
                 <h2 class="h2 section-title">
-                    Subscribe to <strong class="strong">new posts</strong>
+                    Subscribe untuk <strong class="strong">postingan baru</strong>
                 </h2>
 
                 <form action="" class="newsletter-form">
@@ -897,11 +898,11 @@
                 <div class="footer-brand">
 
                     <a href="#" class="logo">
-                        <img src="./assets/images/logo.svg" width="129" height="40" alt="Blogy logo">
+                        <img src="{{ asset('quantumread.png') }}"  alt="">
                     </a>
 
                     <p class="footer-text">
-                        A minimal, functional theme for running a paid-membership publication on Ghost.
+                        Di website ini anda dapat mengeksplor berbagai macam karya tulisan yang menarik.
                     </p>
 
                 </div>
@@ -913,9 +914,9 @@
                     </li>
 
                     <li class="footer-list-item">
-                        <ion-icon name="logo-facebook"></ion-icon>
+                        <ion-icon name="logo-Instagram"></ion-icon>
 
-                        <a href="#" class="footer-link hover:underline">Facebook</a>
+                        <a href="#" class="footer-link hover:underline">Instagram</a>
                     </li>
 
                     <li class="footer-list-item">
@@ -925,15 +926,15 @@
                     </li>
 
                     <li class="footer-list-item">
-                        <ion-icon name="logo-pinterest"></ion-icon>
+                        <ion-icon name="logo-Github"></ion-icon>
 
-                        <a href="#" class="footer-link hover:underline">Pinterest</a>
+                        <a href="#" class="footer-link hover:underline">Github</a>
                     </li>
 
                     <li class="footer-list-item">
-                        <ion-icon name="logo-vimeo"></ion-icon>
+                        <ion-icon name="logo-Facebook"></ion-icon>
 
-                        <a href="#" class="footer-link hover:underline">Vimeo</a>
+                        <a href="#" class="footer-link hover:underline">Facebook</a>
                     </li>
 
                 </ul>
@@ -957,10 +958,6 @@
                     </li>
 
                     <li>
-                        <a href="#" class="footer-link hover:underline">404</a>
-                    </li>
-
-                    <li>
                         <a href="#" class="footer-link hover:underline">Privacy Policy</a>
                     </li>
 
@@ -973,23 +970,11 @@
                     </li>
 
                     <li>
-                        <a href="#" class="footer-link hover:underline">Upcoming Events</a>
-                    </li>
-
-                    <li>
                         <a href="#" class="footer-link hover:underline">Blog & News</a>
                     </li>
 
                     <li>
                         <a href="#" class="footer-link hover:underline">Features</a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="footer-link hover:underline">FAQ Question</a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="footer-link hover:underline">Testimonial</a>
                     </li>
 
                 </ul>
@@ -1016,10 +1001,6 @@
                         <a href="#" class="footer-link hover:underline">Tags</a>
                     </li>
 
-                    <li>
-                        <a href="#" class="footer-link hover:underline">Authors</a>
-                    </li>
-
                 </ul>
 
             </div>
@@ -1027,8 +1008,8 @@
             <div class="section footer-bottom">
 
                 <p class="copyright">
-                    &copy; Blogy 2022. Published by <a href="#"
-                        class="copyright-link hover:underline">codewithsadee</a>.
+                    &copy; QuantumRead 2024. Published by <a href="#"
+                        class="copyright-link hover:underline">QuantumBeat</a>.
                 </p>
 
             </div>
