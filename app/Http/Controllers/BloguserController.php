@@ -5,8 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\User;
-use Illuminate\Support\Str;
+//return type View
+use Illuminate\View\View;
+
+//return type redirectResponse
+use Illuminate\Http\RedirectResponse;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -65,6 +72,16 @@ class BloguserController extends Controller
 
         return redirect()->route('bloguser.index')->with('success', 'Blog berhasil disimpan!');
     }
+
+    public function show(string $id): View
+    {
+        //get post by ID
+        $blog = Blog::findOrFail($id);
+
+        //render view with post
+        return view('show', compact('blog'));
+    }
+
 
     /**
      * Menampilkan formulir untuk mengedit blog.

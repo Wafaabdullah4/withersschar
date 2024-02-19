@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BloguserController;
 use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,7 @@ Route::middleware(['auth', 'user'])->group(function () {
 
 Route::get('/', [BlogController::class, 'beritautama']);
 
+Route::get('show/{id}', [BloguserController::class, 'show'])->name('show.blog');
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
