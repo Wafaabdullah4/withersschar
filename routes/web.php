@@ -31,7 +31,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/category',  \App\Http\Controllers\CategoryController::class);
     Route::resource('/blog',  \App\Http\Controllers\BlogController::class);
     Route::resource('/users',  \App\Http\Controllers\UserController::class);
-
 });
 
 Route::middleware(['auth', 'user'])->group(function () {
@@ -42,7 +41,6 @@ Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/profile/edit/{id}', [UserController::class, 'edituser'])->name('profile.edit');
     Route::put('/profile/update/{id}', [UserController::class, 'updateuser'])->name('profile.update');
     Route::delete('/profile/destroy/{id}', [UserController::class, 'destroyuser'])->name('profile.destroy');
-
 });
 
 

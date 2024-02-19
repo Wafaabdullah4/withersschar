@@ -7,8 +7,8 @@
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <title>Withersschar</title>
 
     <meta name="description" content="" />
@@ -56,7 +56,7 @@
 
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
-                    <a href="{{url('home')}}" class="app-brand-link">
+                    <a href="{{ url('home') }}" class="app-brand-link">
                         <span class="app-brand-logo demo">
 
                         </span>
@@ -86,7 +86,7 @@
                 <ul class="menu-inner py-1">
                     <!-- Dashboards -->
                     <li class="menu-item active open">
-                        <a href="{{url('home')}}" class="menu-link menu-toggle">
+                        <a href="{{ route('home') }}" class="menu-link ">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Dashboards">Dashboards</div>
                             <div class="badge bg-danger rounded-pill ms-auto">5</div>
@@ -100,24 +100,21 @@
                     </li>
                     <!-- Apps -->
                     <li class="menu-item">
-                        <a href="{{route('users.index')}}"
-                         class="menu-link">
+                        <a href="{{ route('users.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-store"></i>
                             <div data-i18n="Email">Pengguna</div>
                             <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto"></div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{route('category.index')}}"
-                            class="menu-link">
+                        <a href="{{ route('category.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-chat"></i>
                             <div data-i18n="Chat">Category</div>
                             <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto"></div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{route('blog.index')}}"
-                            class="menu-link">
+                        <a href="{{ route('blog.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-calendar"></i>
                             <div data-i18n="Calendar">Postingan</div>
                             <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto"></div>
@@ -169,14 +166,32 @@
                                     data-icon="octicon-star" data-size="large" data-show-count="true"
                                     aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
                             </li>
+                            @php
+                                use App\Models\User;
+
+                                // Dapatkan ID pengguna yang sedang login
+                                $userId = Auth::id();
+
+                                // Cek apakah pengguna ditemukan berdasarkan ID
+                                $user = User::find($userId);
+
+                                // Jika pengguna tidak ditemukan, Anda dapat menangani sesuai dengan kebutuhan Anda
+                                if (!$user) {
+                                    abort(404); // atau atur $user ke nilai default, sesuai kebutuhan Anda
+                                }
+                            @endphp
 
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="../assets/img/avatars/1.png" alt
-                                            class="w-px-40 h-auto rounded-circle" />
+                                        @if ($user->image)
+                                            <img src="{{ asset('storage/' . $user->image) }}" alt="User Image"
+                                                class="img-thumbnail w-px-40 h-auto rounded-circle">
+                                        @else
+                                            <span>Tidak ada gambar</span>
+                                        @endif
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -185,16 +200,26 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        {{-- @if ($user->image)
-                                                        <img src="{{ asset('storage/' . $user->image) }}" alt="User Image" class="img-thumbnail w-px-40 h-auto rounded-circle">
-                                                    @else
-                                                        Tidak ada gambar
-                                                    @endif --}}
+
+                                                        @if ($user->image)
+                                                            <img src="{{ asset('storage/' . $user->image) }}"
+                                                                alt="User Image"
+                                                                class="img-thumbnail w-px-40 h-auto rounded-circle">
+                                                        @else
+                                                            <span>Tidak ada gambar</span>
+                                                        @endif
+
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-medium d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    @if (Auth::check())
+                                                        <span
+                                                            class="fw-medium d-block">{{ Auth::user()->name }}</span>
+                                                        <small class="text-muted">{{ Auth::user()->usertype }}</small>
+                                                    @else
+                                                        <span class="fw-medium d-block">Guest</span>
+                                                        <small class="text-muted">Pengguna Tamu</small>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </a>
@@ -232,7 +257,7 @@
                                             <i class="bx bx-power-off me-2"></i>
                                             <span class="align-middle">Log Out
 
-                     </span>
+                                            </span>
                                         </a>
                                     </li>
                                 </ul>
@@ -245,48 +270,47 @@
                 <!-- / Navbar -->
 
                 <div class="content-wrapper">
-                                @yield('content')
-                            </div>
-                    <!-- / Content -->
-
-                    <!-- Footer -->
-                    <footer class="content-footer footer bg-footer-theme">
-                        <div
-                            class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                            <div class="mb-2 mb-md-0">
-                                ©
-                                <script>
-                                    document.write(new Date().getFullYear());
-                                </script>
-                                , made with ❤️ by
-                                <a href="https://themeselection.com" target="_blank"
-                                    class="footer-link fw-medium">ThemeSelection</a>
-                            </div>
-                            <div class="d-none d-lg-inline-block">
-                                <a href="https://themeselection.com/license/" class="footer-link me-4"
-                                    target="_blank">License</a>
-                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
-                                    Themes</a>
-
-                                <a href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/"
-                                    target="_blank" class="footer-link me-4">Documentation</a>
-
-                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                                    target="_blank" class="footer-link">Support</a>
-                            </div>
-                        </div>
-                    </footer>
-                    <!-- / Footer -->
-
-                    <div class="content-backdrop fade"></div>
+                    @yield('content')
                 </div>
-                <!-- Content wrapper -->
-            </div>
-            <!-- / Layout page -->
-        </div>
+                <!-- / Content -->
 
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
+                <!-- Footer -->
+                <footer class="content-footer footer bg-footer-theme">
+                    <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                        <div class="mb-2 mb-md-0">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            , made with ❤️ by
+                            <a href="https://themeselection.com" target="_blank"
+                                class="footer-link fw-medium">ThemeSelection</a>
+                        </div>
+                        <div class="d-none d-lg-inline-block">
+                            <a href="https://themeselection.com/license/" class="footer-link me-4"
+                                target="_blank">License</a>
+                            <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
+                                Themes</a>
+
+                            <a href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/"
+                                target="_blank" class="footer-link me-4">Documentation</a>
+
+                            <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                                target="_blank" class="footer-link">Support</a>
+                        </div>
+                    </div>
+                </footer>
+                <!-- / Footer -->
+
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+    </div>
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
 
@@ -317,16 +341,17 @@
 
     <script>
         //message with toastr
-        @if(session()->has('success'))
+        @if (session()->has('success'))
 
             toastr.success('{{ session('success') }}', 'BERHASIL!');
-
-        @elseif(session()->has('error'))
+        @elseif (session()->has('error'))
 
             toastr.error('{{ session('error') }}', 'GAGAL!');
-
         @endif
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 
