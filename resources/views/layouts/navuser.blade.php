@@ -60,19 +60,9 @@
                         <span class="app-brand-logo demo">
 
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bold ms-2 ">Withersschar</span>
+                        <span class="hero demo menu-text fw-bold ms-1 ">QUANTUMREAD</span>
                     </a>
-                    <!-- Add this button wherever you want the logout button to appear -->
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-
-                        <x-dropdown-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                        </x-dropdown-link>
-                    </form>
-
+ 
 
 
                     <a href="javascript:void(0);"
@@ -83,15 +73,14 @@
 
                 <div class="menu-inner-shadow"></div>
 
-                <ul class="menu-inner py-1">
-                    <!-- Dashboards -->
+                <!-- <ul class="menu-inner py-1"> -->
+                    <!-- Dashboards
                     <li class="menu-item active open">
                         <a href="{{url('home')}}" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Dashboards">Dashboards</div>
-                            <div class="badge bg-danger rounded-pill ms-auto">5</div>
                         </a>
-                    </li>
+                    </li> -->
 
 
 
@@ -210,38 +199,14 @@
                                     <li>
                                         <div class="dropdown-divider"></div>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="bx bx-user me-2"></i>
-                                            <span class="align-middle">My Profile</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="bx bx-cog me-2"></i>
-                                            <span class="align-middle">Settings</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <span class="d-flex align-items-center align-middle">
-                                                <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                                                <span class="flex-grow-1 align-middle ms-1">Billing</span>
-                                                <span
-                                                    class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown-divider"></div>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="javascript:void(0);">
-                                            <i class="bx bx-power-off me-2"></i>
-                                            <span class="align-middle">Log Out
-
-                     </span>
-                                        </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <x-dropdown-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            <button type="button" class="btn btn-danger">LOGOUT</button>
+                        </x-dropdown-link>
+                                                       
                                     </li>
                                 </ul>
                             </li>
