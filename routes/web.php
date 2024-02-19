@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BloguserController;
 use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,8 @@ Route::middleware(['auth', 'user'])->group(function () {
     // Route::resource('/category',  \App\Http\Controllers\CategoryController::class);
     // Route::resource('/blog',  \App\Http\Controllers\BlogController::class);
     // Route::resource('/users',  \App\Http\Controllers\UserController::class);
+     Route::resource('/categoryuser',  \App\Http\Controllers\CategoryuserController::class);
+    Route::resource('/bloguser',  \App\Http\Controllers\BloguserController::class);
     Route::get('/profile', [UserController::class, 'user'])->name('profile.index');
     Route::get('/profile/edit/{id}', [UserController::class, 'edituser'])->name('profile.edit');
     Route::put('/profile/update/{id}', [UserController::class, 'updateuser'])->name('profile.update');
@@ -46,6 +49,7 @@ Route::middleware(['auth', 'user'])->group(function () {
 
 Route::get('/', [BlogController::class, 'beritautama']);
 
+Route::get('show/{id}', [BloguserController::class, 'show'])->name('show.blog');
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
