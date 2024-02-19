@@ -38,6 +38,8 @@ Route::middleware(['auth', 'user'])->group(function () {
     // Route::resource('/category',  \App\Http\Controllers\CategoryController::class);
     // Route::resource('/blog',  \App\Http\Controllers\BlogController::class);
     // Route::resource('/users',  \App\Http\Controllers\UserController::class);
+     Route::resource('/categoryuser',  \App\Http\Controllers\CategoryuserController::class);
+    Route::resource('/bloguser',  \App\Http\Controllers\BloguserController::class);
     Route::get('/profile', [UserController::class, 'user'])->name('profile.index');
     Route::get('/profile/edit/{id}', [UserController::class, 'edituser'])->name('profile.edit');
     Route::put('/profile/update/{id}', [UserController::class, 'updateuser'])->name('profile.update');

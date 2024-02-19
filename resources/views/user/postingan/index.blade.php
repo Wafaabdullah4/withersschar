@@ -1,4 +1,4 @@
-@extends('layouts.navadmin')
+@extends('layouts.navuser')
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -8,9 +8,10 @@
 
                 <ul class="nav nav-pills flex-column flex-md-row mb-3 mx-4">
                     <li class="nav-item">
-                      <a class="nav-link active" href="{{ route('blog.create') }}">Tambah Blog</a>
+                      <a class="nav-link active" href="{{ route('bloguser.create') }}">Tambah Blog</a>
                     </li>
                 </ul>
+
                 <table class="table">
                     <thead>
                         <tr>
@@ -66,14 +67,14 @@
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="{{ route('blog.edit', $blog->id) }}">
+                                            <a class="dropdown-item" href="{{ route('bloguser.edit', $blog->id) }}">
                                                 <i class="bx bx-edit-alt me-1"></i> Edit
                                             </a>
                                             <a class="dropdown-item" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $blog->id }}').submit();">
                                                 <i class="bx bx-trash me-1"></i> Delete
                                             </a>
                                             <!-- Form Hapus di dalam Dropdown -->
-                                            <form id="delete-form-{{ $blog->id }}" onsubmit="return confirm('Apakah Anda yakin ingin menghapus?');" action="{{ route('blog.destroy', $blog->id) }}" method="POST" style="display: none;">
+                                            <form id="delete-form-{{ $blog->id }}" onsubmit="return confirm('Apakah Anda yakin ingin menghapus?');" action="{{ route('bloguser.destroy', $blog->id) }}" method="POST" style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
@@ -89,8 +90,6 @@
                                     </div>
                                 </td>
                             </tr>
-
-
                         @endforelse
                     </tbody>
                 </table>
